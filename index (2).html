@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>فريق الرجاء المسرحي</title>
+  <style>
+    body {
+      font-family: 'Arial', sans-serif;
+      direction: rtl;
+      text-align: center;
+      background-color: #f2f2f2;
+      padding: 50px;
+      margin: 0;
+    }
+
+    .container {
+      background-color: #fff;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      display: inline-block;
+    }
+
+    input {
+      padding: 10px;
+      margin: 10px;
+      width: 80%;
+      font-size: 16px;
+    }
+
+    button {
+      padding: 10px 30px;
+      font-size: 16px;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+
+    .result {
+      margin-top: 30px;
+      background-color: #e8f5e9;
+      padding: 20px;
+      border-radius: 10px;
+      color: #000;
+    }
+
+    .rehearsal-times {
+      margin-top: 20px;
+      background-color: #333;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 14px;
+      line-height: 1.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🎭 فريق الرجاء المسرحي</h1>
+
+  <div class="container">
+    <input type="text" id="name" placeholder="الاسم">
+    <input type="password" id="password" placeholder="كلمة المرور">
+    <br>
+    <button onclick="login()">تم</button>
+    <div id="output" class="result"></div>
+  </div>
+
+  <script>
+    const data = [
+      { name: "كيرلس", role: "نور", costume: "أبيض" },
+      { name: "ماريا", role: "سواء", costume: "أسود" },
+      { name: "جون", role: "رجل1", costume: "رمادي" },
+      { name: "مينا", role: "رجل2", costume: "أخضر" },
+      { name: "فادي", role: "رجل3", costume: "أزرق" }
+    ];
+
+    function login() {
+      const name = document.getElementById("name").value.trim();
+      const pass = document.getElementById("password").value.trim();
+      const user = data.find(u => u.name === name);
+      const output = document.getElementById("output");
+      output.innerHTML = "";
+
+      if (!user) {
+        output.innerHTML = "للاسف ملكش نصيب معانا في العرض";
+        return;
+      }
+      if (pass !== "1234") {
+        output.innerHTML = "كلمة المرور مش صح ";
+        return;
+      }
+
+      output.innerHTML = `
+        <h3>مرحبًا ${user.name} 🌟</h3>
+        <p>🎭 <strong>دورك:</strong> ${user.role}</p>
+        <p>👕 <strong>اللبس المطلوب:</strong> ${user.costume}</p>
+        <p>📄 <a href="ظل (نشيد الانشاد ).pdf" download>تحميل السكريبت المسرحي</a></p>
+        <hr>
+        <p style="font-weight: bold; color: #333;">إخراج / يوسف أمجد</p>
+        <div class="rehearsal-times">
+          <strong>📆 مواعيد البروفات:</strong><br>
+          🕒 السبت – 3:00 مساءً<br>
+          🕛 الأحد – 12:00 ظهرًا<br>
+          🕕 الاثنين – 6:00 مساءً
+        </div>
+        <p style="font-size: 13px; margin-top: 20px; color: #777;">Made By / KEROLOS GALY NASHED</p>
+      `;
+    }
+  </script>
+
+</body>
+</html>
